@@ -1,2 +1,2 @@
 # demo
- SpringBotLearn, java and react
+ A simple projetc using springBot, java and react. 

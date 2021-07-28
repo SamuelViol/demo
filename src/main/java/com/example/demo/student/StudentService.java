@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +51,7 @@ public class StudentService {
 
     //atualizar
     @Transactional
-    public void updateStudent(Long studentId, String name, String email) {
+    public void updateStudent(Long studentId, String name, String email, LocalDate dov) {
         Student student= studentRepository.findById(studentId).orElseThrow(() ->
                 new IllegalStateException("não existe" + studentId)
         );
@@ -65,6 +66,9 @@ public class StudentService {
                 throw new IllegalStateException("email ja utilizado");
             }
             student.setEmail(email);
+        }
+        if(dov != null){
+            student.setDov(dov);
         }
     }
 }

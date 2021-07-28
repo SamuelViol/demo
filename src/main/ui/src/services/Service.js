@@ -10,6 +10,9 @@ class Service extends React.Component {
     createStudent(students){
         return axios.post(API_URL, students)
     }
+    updateStudent(studentsId){
+        return axios.put(API_URL+'/'+studentsId)
+    }
 }
 
 export default new Service()

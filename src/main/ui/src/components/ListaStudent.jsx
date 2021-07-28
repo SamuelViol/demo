@@ -9,6 +9,7 @@ export default class ListaStudent extends React.Component {
             students: []
         }
         this.addStudent = this.addStudent.bind(this)
+        this.editStudent = this.editStudent.bind(this)
     }
 
     componentDidMount() {
@@ -18,6 +19,10 @@ export default class ListaStudent extends React.Component {
 
     addStudent() {
         this.props.history.push('/add-student')
+    }
+
+    editStudent(id){
+        this.props.history.push(`/edit-student/${id}`)
     }
 
     render() {
@@ -49,7 +54,7 @@ export default class ListaStudent extends React.Component {
                                             <td>{students.age}</td>
                                             <td>
                                                 <button type="button" className="btn btn-outline-success btn-sm">Visualizar</button>
-                                                <button type="button" className="btn btn-outline-primary btn-sm" style={{ marginLeft: "10px" }}>Editar</button>
+                                                <button type="button" className="btn btn-outline-primary btn-sm" style={{ marginLeft: "10px" }} onClick={()=>this.editStudent(students.id)}>Editar</button>
                                                 <button type="button" className="btn btn-outline-danger btn-sm" style={{ marginLeft: "10px" }}>Deletar</button>
                                             </td>
                                         </tr>

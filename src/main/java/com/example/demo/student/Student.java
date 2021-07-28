@@ -70,13 +70,13 @@ public class Student {
         this.dov = dov;
     }
 
-//    public Integer getAge() {
-//        return Period.between(this.dov, LocalDate.now()).getYears();
-//    }
+    public Integer getAge() {
+        return Period.between(this.dov, LocalDate.now()).getYears();
+    }
 
-//    public void setAge(Integer age) {
-//        this.age = age;
-//    }
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
     @Override
     public String toString() {
@@ -85,7 +85,7 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", dov=" + dov +
-               // ", age=" + age +
+                ", age=" + age +
                 '}';
     }
 }

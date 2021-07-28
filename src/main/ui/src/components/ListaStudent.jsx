@@ -3,20 +3,20 @@ import Service from '../services/Service'
 import moment from 'moment'
 
 export default class ListaStudent extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            students:[]
+            students: []
         }
         this.addStudent = this.addStudent.bind(this)
     }
 
-    componentDidMount(){
-        Service.getStudent().then((res) => 
-        this.setState({students: res.data}))
+    componentDidMount() {
+        Service.getStudent().then((res) =>
+            this.setState({ students: res.data }))
     }
 
-    addStudent(){
+    addStudent() {
         this.props.history.push('/add-student')
     }
 
@@ -27,32 +27,35 @@ export default class ListaStudent extends React.Component {
                 <div className="row">
                     <table className="table table-striped table-bordered">
                         <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>NascData</th>
-                            <th>Ações <button type="button" className="btn btn-outline-secondary btn-sm" onClick={this.addStudent}>Adicionar</button></th>
-                        </tr>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>NascData</th>
+                                <th>Idade</th>
+                                <th>Ações <button type="button" className="btn btn-outline-secondary btn-sm" onClick={this.addStudent}>Adicionar</button></th>
+                            </tr>
                         </thead>
 
                         <tbody>
-                        {
-                            this.state.students.map(
-                                students => 
-                                <tr key = {students.id}>
-                                    <td>{students.id}</td>
-                                    <td>{students.name}</td>
-                                    <td>{students.email}</td>
-                                    <td>{students.dov}</td>    
-                                    <td>
-                                        <button type="button" className="btn btn-outline-primary btn-sm">Editar</button>
-                                        <button type="button" className="btn btn-outline-danger btn-sm">Deletar</button>
-                                    </td>         
-                                </tr>
-                            )
-                        }
-                    </tbody>
+                            {
+                                this.state.students.map(
+                                    students =>
+                                        <tr key={students.id}>
+                                            <td>{students.id}</td>
+                                            <td>{students.name}</td>
+                                            <td>{students.email}</td>
+                                            <td>{students.dov}</td>
+                                            <td>{students.age}</td>
+                                            <td>
+                                                <button type="button" className="btn btn-outline-success btn-sm">Visualizar</button>
+                                                <button type="button" className="btn btn-outline-primary btn-sm" style={{ marginLeft: "10px" }}>Editar</button>
+                                                <button type="button" className="btn btn-outline-danger btn-sm" style={{ marginLeft: "10px" }}>Deletar</button>
+                                            </td>
+                                        </tr>
+                                )
+                            }
+                        </tbody>
 
                     </table>
                 </div>

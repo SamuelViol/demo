@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +21,13 @@ public class StudentService {
         return  studentRepository.findAll();
     }
 
+    //buscar pelo id
+    public Optional<Student>studentFindById(Long id){
+        if(studentRepository.findById(id).isEmpty()){
+            throw new IllegalStateException("id" + id + "não existe");
+        }
+        return studentRepository.findById(id);
+    }
 
     //adicionar novo
     public void addNewStudent(Student student) {
@@ -32,7 +37,6 @@ public class StudentService {
             throw new IllegalStateException("email ja utilizado");
         }
         studentRepository.save(student);
-       // System.out.println(student);
     }
 
     //deletar

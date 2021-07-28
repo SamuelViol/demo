@@ -1,10 +1,11 @@
 package com.example.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.expression.spel.ast.OpAnd;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
@@ -13,14 +14,22 @@ public class StudentController {
 
     private  final  StudentService studentService;
 
+
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
+    //buscar todos
     @GetMapping
     public List<Student> getStudents(){
         return studentService.getStudents();
+    }
+
+    //buscar pelo id
+    @GetMapping(path =  "{id}")
+    public Optional<Student> studentFindById(@PathVariable("id")Long id){
+        return studentService.studentFindById(id);
     }
 
     //adicionar novo

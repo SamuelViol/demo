@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(path = "api/v1/student")
 public class StudentController {
@@ -28,7 +28,7 @@ public class StudentController {
     }
 
     //buscar pelo id
-    @GetMapping(path =  "{id}")
+    @GetMapping("/{id}")
     public Optional<Student> studentFindById(@PathVariable("id")Long id){
         return studentService.studentFindById(id);
     }

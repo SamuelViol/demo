@@ -6,7 +6,7 @@ export default class ListaStudent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            students: []
+            student: []
         }
         this.addStudent = this.addStudent.bind(this)
         this.editStudent = this.editStudent.bind(this)
@@ -14,23 +14,23 @@ export default class ListaStudent extends React.Component {
 
     componentDidMount() {
         Service.getStudent().then((res) =>
-            this.setState({ students: res.data }))
+            this.setState({ student: res.data }))
     }
 
     addStudent() {
         this.props.history.push('/add-student')
     }
 
-    editStudent(id){
-        this.props.history.push(`/edit-student/${id}`)
+    editStudent(id) {
+        this.props.history.push(`/update-student/${id}`)
     }
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h2 className="text-center">Lista Estudante</h2>
-                <div className="row">
-                    <table className="table table-striped table-bordered">
+                <div className="table-responsive">
+                    <table className="table table-striped table-bordered table-sm">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -38,31 +38,31 @@ export default class ListaStudent extends React.Component {
                                 <th>Email</th>
                                 <th>NascData</th>
                                 <th>Idade</th>
-                                <th>Ações <button type="button" className="btn btn-outline-secondary btn-sm" onClick={this.addStudent}>Adicionar</button></th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             {
-                                this.state.students.map(
-                                    students =>
-                                        <tr key={students.id}>
-                                            <td>{students.id}</td>
-                                            <td>{students.name}</td>
-                                            <td>{students.email}</td>
-                                            <td>{students.dov}</td>
-                                            <td>{students.age}</td>
+                                this.state.student.map(
+                                    student =>
+                                        <tr key={student.id}>
+                                            <td>{student.id}</td>
+                                            <td>{student.name}</td>
+                                            <td>{student.email}</td>
+                                            <td>{student.dov}</td>
+                                            <td>{student.age}</td>
                                             <td>
                                                 <button type="button" className="btn btn-outline-success btn-sm">Visualizar</button>
-                                                <button type="button" className="btn btn-outline-primary btn-sm" style={{ marginLeft: "10px" }} onClick={()=>this.editStudent(students.id)}>Editar</button>
+                                                <button type="button" className="btn btn-outline-primary btn-sm" style={{ marginLeft: "10px" }} onClick={() => this.editStudent(student.id)}>Editar</button>
                                                 <button type="button" className="btn btn-outline-danger btn-sm" style={{ marginLeft: "10px" }}>Deletar</button>
                                             </td>
                                         </tr>
                                 )
                             }
                         </tbody>
-
+                        
                     </table>
+                    <button type="button" className="btn btn-outline-secondary btn-sm float-right" onClick={this.addStudent}>Adicionar</button>
                 </div>
             </div>
         )

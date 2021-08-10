@@ -7,11 +7,11 @@ class Service extends React.Component {
     getStudent(){
         return axios.get(API_URL)
     }
-    createStudent(students){
-        return axios.post(API_URL, students)
+    createStudent(student){
+        return axios.post(API_URL, student)
     }
-    updateStudent(studentsId){
-        return axios.put(API_URL+'/'+studentsId)
+    updateStudent(studentId, student){
+        return axios.put(API_URL + `/${studentId}`, student)
     }
 }
 

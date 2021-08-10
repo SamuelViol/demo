@@ -56,7 +56,7 @@ class CreateStudent extends Component {
                                         <label>Email: </label>
                                         <input placeholder="Email" name="email" className="form-control" value={this.state.email} onChange={this.changeEmail}/>
                                         <label>Data de Nascimento: </label>
-                                        <input type="date" name="DtNasc" className="form-control" value={this.state.birthDate} onChange={this.changeDtNasc}/>
+                                        <input type="date" name="DtNasc" className="form-control" value={this.state.dov} onChange={this.changeDtNasc}/>
                                     </div>
                                         <button type="button" className="btn btn-outline-primary btn-sm" onClick={this.saveStudent}>Salvar</button>
                                         <button type="button" className="btn btn-outline-danger btn-sm" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancelar</button>

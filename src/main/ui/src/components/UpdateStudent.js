@@ -16,14 +16,14 @@ class UpdateStudent extends Component {
         this.changeName = this.changeName.bind(this)
         this.changeEmail = this.changeEmail.bind(this)
         this.changeDtNasc = this.changeDtNasc.bind(this)
-        this.saveStudent = this.saveStudent.bind(this)
+        this.editStudent = this.editStudent.bind(this)
         this.cancel = this.cancel.bind(this)
     }
 
     componentDidMount(){
-        Service.updateStudent(this.state.id).then((response)=> {
-            let student = response.data;
-            this.setState({name: student.name, email: student.email, dov: student.dov})
+        Service.updateStudent(this.state.id).then((res)=> {
+            let student = res.data
+            this.setState({name: student.name, email: student.email, dov: student.dov})           
         })
     }
     
@@ -31,7 +31,7 @@ class UpdateStudent extends Component {
         e.preventDefault()
         let student = {name: this.state.name, email: this.state.email, dov: this.state.dov}
         console.log('student: ' + JSON.stringify(student))
-        Service.createStudent(student).then(res =>{
+        Service.updateStudent(student, this.state.id).then(res =>{
             this.props.history.push('/')
         })
     }
@@ -63,7 +63,7 @@ class UpdateStudent extends Component {
                                         <label>Email: </label>
                                         <input placeholder="Email" name="email" className="form-control" value={this.state.email} onChange={this.changeEmail}/>
                                         <label>Data de Nascimento: </label>
-                                        <input type="date" name="DtNasc" className="form-control" value={this.state.birthDate} onChange={this.changeDtNasc}/>
+                                        <input type="date" name="dov" className="form-control" value={this.state.dov} onChange={this.changeDtNasc}/>
                                     </div>
                                         <button type="button" className="btn btn-outline-primary btn-sm" onClick={this.editStudent}>Salvar</button>
                                         <button type="button" className="btn btn-outline-danger btn-sm" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancelar</button>

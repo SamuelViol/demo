@@ -32,6 +32,7 @@ class UpdateStudent extends Component {
         let student = {name: this.state.name, email: this.state.email, dov: this.state.dov}
         console.log('student: ' + JSON.stringify(student))
         Service.updateStudent(student, this.state.id).then(res =>{
+            console.log("entrou")
             this.props.history.push('/')
         })
     }

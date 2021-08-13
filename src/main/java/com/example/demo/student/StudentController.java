@@ -8,10 +8,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = {"*"} )
 @RestController
 @RequestMapping(path = "api/v1/student")
-public class StudentController {
+public class StudentController{
 
     private  final  StudentService studentService;
 
@@ -47,7 +47,8 @@ public class StudentController {
 
     //update
     @PutMapping(path = "{studentId}")
-    public void updateStudent(@PathVariable("studentId") Long studentId,
+    public void updateStudent(@PathVariable("studentId")
+                                          Long studentId,
                               @RequestParam(required = false) String name,
                               @RequestParam(required = false) String email,
                               @RequestParam(required = false) LocalDate dov)
